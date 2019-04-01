@@ -2,7 +2,7 @@ var datawhatever = d3.json("classData.json");
 
 datawhatever.then(function(data)
 {
-  drawGraph(data,500,300,".one");
+  drawGraph(data,800,600,".one");
 
 },
 function(err)
@@ -50,20 +50,32 @@ var plotLand = svg.append("g")
                   .classed("plot",true)
                   .attr("transform","translate("+margins.left+","+margins.top+ ")");
 
-var quizes = plotLand.selectAll("g")
-                        .data(data)
-                        .enter()
-                        .append("g")
-                        //.attr("fill",function(d){return colors(d.name);})
 
-
-quizes.selectAll("circle")
-        .data(function(d) {return d.quizes.grade})
+var circles = plotLand.selectAll("circle")
+        .data(data[0].quizes) //function(d) {return d.quizes.grade})
         .enter()
         .append("circle")
         .attr("cx",function(d,i) {return xScale(i)+10})
-        .attr("cy",function(d) {return yScale(d)})
-        .attr("r",5);
+        .attr("cy",function(d) {return yScale(d.grade)})
+        .attr("r",5)
+        .style("fill","black");
+
+circles.on("mouseover", function(d) {
+  d3.select("svg").selectAll("text")
+  .classed("t",true)
+  .text(d.grade)
+  .attr("x",function(d,i) {return xScale(i)+10})
+  .attr("y",yScale(d.grade))
+  // var tex = svg.append("text");
+  //     tex.text(d.grade)
+  //     tex.attr("x",function(d,i) {return xScale(i)+10})
+  //     tex.attr("y",yScale(d.grade))
+})
+circles.on("mouseout", function(d) {
+  d3.select("tex").remove()
+})
+
+
 
 //the legend
 // var legend = svg.append("g")
