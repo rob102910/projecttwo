@@ -1,0 +1,33 @@
+<html>
+<body>
+<h1>What does SQL JOIN do? </h1>
+<p>JOIN is used to combine rows from two or more columns based on a related column. This can be done between the table and itself, two tables, or multiple tables.</p>
+<h1>What about INNER JOIN? </h1>
+<p>Inner JOIN specifically returns the records that have matching values in both tables. This means rows where both tables have information present. 
+</br>
+</br>
+It follows the format 
+</p>
+<pre>
+SELECT column_name(s)
+FROM table1
+INNER JOIN table2
+ON table1.column_name = table2.column_name;
+
+And additional tables may be added by adding the code below. 
+
+INNER JOIN table3
+ON table1.column_name = table3.column_name;
+
+And so on… 
+</pre>
+<h1>What about LEFT JOIN?</h1>
+<p>Left Join in turn returns all the records from the left table (or your first table specified) along with the corresponding rows from the right table (or your second table), even when no data for the record is present. In this case the record returns the value null. </p>
+<h1>What about RIGHT JOIN?</h1>
+<p>Right Join returns all records from the right table (or the second table) and the matched records from the left table (or your first table). It returns null when no data is present for a record of the left table.</p>
+<h1>What about FULL OUTER JOIN?</h1>
+<p>Full outer join returns corresponding records when there is a match for either tables record. </p>
+<h1>What about SELF JOIN?</h1>
+<p>Self join is the same as a regular join but between a table and itself.</p>
+</body>
+</html>
